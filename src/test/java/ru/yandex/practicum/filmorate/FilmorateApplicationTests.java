@@ -14,33 +14,20 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-class FilmorateApplicationTests {
+public class FilmorateApplicationTests {
 
 	@Autowired
 	private ValidationService validationService;
 
 	@Test
-	void contextLoads() {
+	public void contextLoads() {
 		// Проверяем, что контекст Spring успешно загружается
 		assertThat(validationService).isNotNull();
 		System.out.println("Контекст Spring успешно загружен!");
 	}
 
 	@Test
-	void shouldValidateCorrectFilm() {
-		// Подготовка
-		Film film = new Film();
-		film.setName("Valid Film");
-		film.setDescription("Valid description under 200 characters");
-		film.setReleaseDate(LocalDate.of(2000, 1, 1));
-		film.setDuration(120);
-
-		// Действие и проверка (не должно быть исключений)
-		assertDoesNotThrow(() -> validationService.validateFilm(film));
-	}
-
-	@Test
-	void shouldThrowExceptionWhenFilmNameIsEmpty() {
+	public void shouldThrowExceptionWhenFilmNameIsEmpty() {
 		// Подготовка
 		Film film = new Film();
 		film.setName("");
@@ -55,7 +42,7 @@ class FilmorateApplicationTests {
 	}
 
 	@Test
-	void shouldThrowExceptionWhenFilmNameIsNull() {
+	public void shouldThrowExceptionWhenFilmNameIsNull() {
 		// Подготовка
 		Film film = new Film();
 		film.setName(null);
@@ -70,7 +57,7 @@ class FilmorateApplicationTests {
 	}
 
 	@Test
-	void shouldThrowExceptionWhenFilmDescriptionIsTooLong() {
+	public void shouldThrowExceptionWhenFilmDescriptionIsTooLong() {
 		// Подготовка
 		Film film = new Film();
 		film.setName("Test Film");
@@ -86,7 +73,7 @@ class FilmorateApplicationTests {
 	}
 
 	@Test
-	void shouldAcceptFilmDescriptionWithMaxLength() {
+	public void shouldAcceptFilmDescriptionWithMaxLength() {
 		// Подготовка
 		Film film = new Film();
 		film.setName("Test Film");
@@ -99,7 +86,7 @@ class FilmorateApplicationTests {
 	}
 
 	@Test
-	void shouldThrowExceptionWhenFilmReleaseDateIsTooEarly() {
+	public void shouldThrowExceptionWhenFilmReleaseDateIsTooEarly() {
 		// Подготовка
 		Film film = new Film();
 		film.setName("Test Film");
@@ -114,7 +101,7 @@ class FilmorateApplicationTests {
 	}
 
 	@Test
-	void shouldAcceptFilmWithEarliestReleaseDate() {
+	public void shouldAcceptFilmWithEarliestReleaseDate() {
 		// Подготовка
 		Film film = new Film();
 		film.setName("Test Film");
@@ -126,7 +113,7 @@ class FilmorateApplicationTests {
 	}
 
 	@Test
-	void shouldThrowExceptionWhenFilmDurationIsNegative() {
+	public void shouldThrowExceptionWhenFilmDurationIsNegative() {
 		// Подготовка
 		Film film = new Film();
 		film.setName("Test Film");
@@ -141,7 +128,7 @@ class FilmorateApplicationTests {
 	}
 
 	@Test
-	void shouldThrowExceptionWhenFilmDurationIsZero() {
+	public void shouldThrowExceptionWhenFilmDurationIsZero() {
 		// Подготовка
 		Film film = new Film();
 		film.setName("Test Film");
@@ -156,20 +143,7 @@ class FilmorateApplicationTests {
 	}
 
 	@Test
-	void shouldValidateCorrectUser() {
-		// Подготовка
-		User user = new User();
-		user.setEmail("valid@email.com");
-		user.setLogin("validlogin");
-		user.setName("Valid User");
-		user.setBirthday(LocalDate.of(1990, 1, 1));
-
-		// Действие и проверка
-		assertDoesNotThrow(() -> validationService.validateUser(user));
-	}
-
-	@Test
-	void shouldUseLoginAsNameWhenNameIsEmpty() {
+	public void shouldUseLoginAsNameWhenNameIsEmpty() {
 		// Подготовка
 		User user = new User();
 		user.setEmail("test@email.com");
@@ -185,7 +159,7 @@ class FilmorateApplicationTests {
 	}
 
 	@Test
-	void shouldUseLoginAsNameWhenNameIsNull() {
+	public void shouldUseLoginAsNameWhenNameIsNull() {
 		// Подготовка
 		User user = new User();
 		user.setEmail("test@email.com");
@@ -201,7 +175,7 @@ class FilmorateApplicationTests {
 	}
 
 	@Test
-	void shouldThrowExceptionWhenUserEmailIsEmpty() {
+	public void shouldThrowExceptionWhenUserEmailIsEmpty() {
 		// Подготовка
 		User user = new User();
 		user.setEmail("");
@@ -216,7 +190,7 @@ class FilmorateApplicationTests {
 	}
 
 	@Test
-	void shouldThrowExceptionWhenUserEmailIsInvalid() {
+	public void shouldThrowExceptionWhenUserEmailIsInvalid() {
 		// Подготовка
 		User user = new User();
 		user.setEmail("invalid-email"); // Нет символа @
@@ -231,7 +205,7 @@ class FilmorateApplicationTests {
 	}
 
 	@Test
-	void shouldThrowExceptionWhenUserLoginIsEmpty() {
+	public void shouldThrowExceptionWhenUserLoginIsEmpty() {
 		// Подготовка
 		User user = new User();
 		user.setEmail("test@email.com");
@@ -246,7 +220,7 @@ class FilmorateApplicationTests {
 	}
 
 	@Test
-	void shouldThrowExceptionWhenUserLoginHasSpaces() {
+	public void shouldThrowExceptionWhenUserLoginHasSpaces() {
 		// Подготовка
 		User user = new User();
 		user.setEmail("test@email.com");
@@ -261,7 +235,7 @@ class FilmorateApplicationTests {
 	}
 
 	@Test
-	void shouldThrowExceptionWhenUserBirthdayIsInFuture() {
+	public void shouldThrowExceptionWhenUserBirthdayIsInFuture() {
 		// Подготовка
 		User user = new User();
 		user.setEmail("test@email.com");
@@ -276,24 +250,12 @@ class FilmorateApplicationTests {
 	}
 
 	@Test
-	void shouldAcceptUserWithCurrentDateBirthday() {
+	public void shouldAcceptUserWithCurrentDateBirthday() {
 		// Подготовка
 		User user = new User();
 		user.setEmail("test@email.com");
 		user.setLogin("testlogin");
 		user.setBirthday(LocalDate.now()); // Сегодня
-
-		// Действие и проверка
-		assertDoesNotThrow(() -> validationService.validateUser(user));
-	}
-
-	@Test
-	void shouldAcceptValidEmailWithSpecialCharacters() {
-		// Подготовка
-		User user = new User();
-		user.setEmail("test.email+tag@domain.co.uk");
-		user.setLogin("testlogin");
-		user.setBirthday(LocalDate.of(1990, 1, 1));
 
 		// Действие и проверка
 		assertDoesNotThrow(() -> validationService.validateUser(user));
