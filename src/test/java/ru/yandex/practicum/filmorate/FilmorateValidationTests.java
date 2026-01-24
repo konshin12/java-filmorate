@@ -3,22 +3,25 @@ package ru.yandex.practicum.filmorate;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import ru.yandex.practicum.filmorate.exception.ValidationException;
 import ru.yandex.practicum.filmorate.model.Film;
 import ru.yandex.practicum.filmorate.model.User;
 import ru.yandex.practicum.filmorate.service.ValidationService;
 
 import java.time.LocalDate;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 public class FilmorateValidationTests {
 
-        @Autowired
-        private ValidationService validationService;
+    @Autowired
+    private ValidationService validationService;
 
+    @Test
+    void contextLoads() {
+        assertNotNull(validationService);
+        System.out.println("Контекст Spring успешно загружен!");
+    }
 
     @Test
     public void shouldValidateCorrectUser() {
