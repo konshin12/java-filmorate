@@ -18,7 +18,7 @@ public class FilmorateValidationTests {
     private ValidationService validationService;
 
     @Test
-    void contextLoads() {
+    public void contextLoads() {
         assertNotNull(validationService);
         System.out.println("Контекст Spring успешно загружен!");
     }

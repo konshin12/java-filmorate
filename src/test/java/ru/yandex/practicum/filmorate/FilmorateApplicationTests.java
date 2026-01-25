@@ -25,7 +25,7 @@ public class FilmorateApplicationTests {
 	}
 
 	@Test
-	void shouldCreateValidFilm() {
+	public void shouldCreateValidFilm() {
 		Film film = new Film();
 		film.setName("Интерстеллар");
 		film.setDescription("Фантастический фильм");
@@ -37,7 +37,7 @@ public class FilmorateApplicationTests {
 	}
 
 	@Test
-	void shouldRejectFilmWithTooEarlyReleaseDate() {
+	public void shouldRejectFilmWithTooEarlyReleaseDate() {
 		Film film = new Film();
 		film.setName("Слишком старый фильм");
 		film.setReleaseDate(LocalDate.of(1890, 1, 1));
@@ -49,7 +49,7 @@ public class FilmorateApplicationTests {
 	}
 
 	@Test
-	void shouldAcceptEarliestPossibleReleaseDate() {
+	public void shouldAcceptEarliestPossibleReleaseDate() {
 		Film film = new Film();
 		film.setName("Первый фильм");
 		film.setReleaseDate(LocalDate.of(1895, 12, 28));
@@ -58,7 +58,7 @@ public class FilmorateApplicationTests {
 	}
 
 	@Test
-	void shouldSetLoginAsNameWhenNameIsEmpty() {
+	public void shouldSetLoginAsNameWhenNameIsEmpty() {
 		User user = new User();
 		user.setEmail("user@mail.com");
 		user.setLogin("user123");
@@ -70,7 +70,7 @@ public class FilmorateApplicationTests {
 	}
 
 	@Test
-	void shouldSetLoginAsNameWhenNameIsNull() {
+	public void shouldSetLoginAsNameWhenNameIsNull() {
 		User user = new User();
 		user.setEmail("user@mail.com");
 		user.setLogin("user123");
@@ -82,7 +82,7 @@ public class FilmorateApplicationTests {
 	}
 
 	@Test
-	void shouldKeepNameWhenNameIsProvided() {
+	public void shouldKeepNameWhenNameIsProvided() {
 		User user = new User();
 		user.setEmail("user@mail.com");
 		user.setLogin("user123");
@@ -94,7 +94,7 @@ public class FilmorateApplicationTests {
 	}
 
 	@Test
-	void shouldHandleUserWithSpacesInName() {
+	public void shouldHandleUserWithSpacesInName() {
 		User user = new User();
 		user.setEmail("user@mail.com");
 		user.setLogin("user123");
@@ -106,7 +106,7 @@ public class FilmorateApplicationTests {
 	}
 
 	@Test
-	void testCompleteUserCreation() {
+	public void testCompleteUserCreation() {
 		User user = new User();
 		user.setEmail("john.doe@example.com");
 		user.setLogin("johndoe");
@@ -121,7 +121,7 @@ public class FilmorateApplicationTests {
 	}
 
 	@Test
-	void testCompleteFilmCreation() {
+	public void testCompleteFilmCreation() {
 		Film film = new Film();
 		film.setName("Матрица");
 		film.setDescription("Научно-фантастический фильм");
@@ -132,7 +132,7 @@ public class FilmorateApplicationTests {
 	}
 
 	@Test
-	void shouldHandleEdgeCases() {
+	public void shouldHandleEdgeCases() {
 		// Фильм с минимальной длительностью
 		Film film1 = new Film();
 		film1.setName("Короткий фильм");
