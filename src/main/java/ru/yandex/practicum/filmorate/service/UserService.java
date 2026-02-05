@@ -70,18 +70,25 @@ public class UserService {
         User user = findById(userId);
         User friend = findById(friendId);
 
-        if (!user.getFriends().contains(friendId)) {
-            // Меняем на более подходящее исключение
-            throw new ValidationException("Пользователь " + userId + " не в друзьях у пользователя " + friendId);
+        // Проверяем, есть ли дружба (двусторонняя проверка)
+        boolean userHasFriend = user.getFriends().contains(friendId);
+        boolean friendHasUser = friend.getFriends().contains(userId);
+
+        if (userHasFriend) {
+            user.removeFriend(friendId);
+            userStorage.update(user);
         }
 
-        user.removeFriend(friendId);
-        friend.removeFriend(userId);
+        if (friendHasUser) {
+            friend.removeFriend(userId);
+            userStorage.update(friend);
+        }
 
-        userStorage.update(user);
-        userStorage.update(friend);
-
-        log.info("Пользователь {} удалил из друзей пользователя {}", userId, friendId);
+        if (userHasFriend || friendHasUser) {
+            log.info("Пользователь {} удалил из друзей пользователя {}", userId, friendId);
+        } else {
+            log.info("Попытка удалить несуществующего друга: {} -> {}", userId, friendId);
+        }
     }
 
     public List<User> getFriends(Long userId) {

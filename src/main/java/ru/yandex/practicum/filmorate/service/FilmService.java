@@ -63,9 +63,9 @@ public class FilmService {
     }
 
     public void removeLike(Long filmId, Long userId) {
-        validateFilmAndUserIds(filmId, userId);
-
         Film film = findById(filmId);
+
+        userService.findById(userId);
 
         if (!film.getLikes().contains(userId)) {
             throw new ValidationException("Пользователь не ставил лайк этому фильму");
