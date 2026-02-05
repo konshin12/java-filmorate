@@ -6,9 +6,14 @@ import java.util.Optional;
 
 public interface FilmStorage {
     Film create(Film film);
+
     Film update(Film film);
+
     List<Film> findAll();
+
     Optional<Film> findById(Long id);
+
     void delete(Long id);
+
     boolean existsById(Long id);
 }
